@@ -3,6 +3,8 @@
 
 # this workflow take from http://spark.apache.org/docs/latest/sql-programming-guide.html#interoperating-with-rdds
 
+from pyspark.sql import SQLContext, Row
+
 # get company
 conf = {"es.resource" : "cu/company", "es.query" : "?q=name:acme"}
 
