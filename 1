@@ -3,7 +3,7 @@ from pyspark.sql import SQLContext, Row
 conf = {"es.resource" : "movies2/logs", "es.query" : "?q=name:bourne"}
 movies = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
     "org.apache.hadoop.io.NullWritable", "org.elasticsearch.hadoop.mr.LinkedMapWritable", conf=conf)
-    
+
 moviesRows = movies.map(lambda p: Row(id=int(p[1]['id']), name=p[1]['name']))
 schemaMovies = sqlContext.createDataFrame(movieRows)
 schemaMovies.registerTempTable("movies")
@@ -36,7 +36,11 @@ for result in results.collect():
 # Row(Actors=u'Lenhardt Troy', Movie=u'The Bourne Identity 2002', Role=u'Marine')
 
 
+# equivalent SQL query
+SELECT a.name AS Actor, m.name AS Movie, j.role AS Role FROM actors a LEFT JOIN acted_in j ON a.id = j.actor_id INNER JOIN movies m ON j.movie_id = m.id AND to_tsvector('english', m.name) @@ to_tsquery('english', 'bourne');
 
+
+# timing
 # movies
 16/03/20 10:38:43 INFO DAGScheduler: Job 27 finished: take at SerDeUtil.scala:201, took 0.021953 s
 16/03/20 10:39:27 INFO DAGScheduler: Job 28 finished: runJob at PythonRDD.scala:393, took 0.025412 s
