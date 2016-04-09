@@ -2,7 +2,7 @@ from pyspark import SparkContext
 from pyspark.sql import SQLContext, Row
 
 sc = SparkContext("local[*]", "Simple App")
-#sc = SparkContext("spark://rcutter-loaner-2.local:7077", "Simple App")
+#sc = SparkContext("spark://url:7077", "Simple App")
 sqlContext = SQLContext(sc)
 
 conf = {"es.resource" : "movies2/logs", "es.query" : "?q=name:bourne"}
