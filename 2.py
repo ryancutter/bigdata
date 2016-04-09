@@ -1,3 +1,5 @@
+# to run: SPARK_CLASSPATH=/path/to/elasticsearch-hadoop-2.2.0/dist/elasticsearch-spark_2.11-2.2.0.jar ./spark-1.6.0-bin-hadoop2.6/bin/spark-submit 2.py
+
 from pyspark import SparkContext
 from pyspark.sql import SQLContext, Row
 
