@@ -17,7 +17,7 @@ schemaMovies.registerTempTable("movies")
 ids = sqlContext.sql("SELECT id FROM movies")
 ids.collect()
 
-conf = {"es.resource" : "acted_in/logs", "es.query" : "?q=movie_id:3480646"}
+conf = {"es.resource" : "acted_in2/logs", "es.query" : "?q=movie_id:3480646"}
 actedIn = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
     "org.apache.hadoop.io.NullWritable", "org.elasticsearch.hadoop.mr.LinkedMapWritable", conf=conf)
 
