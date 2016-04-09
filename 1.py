@@ -1,3 +1,5 @@
+# pyspark terminal commands.  will not run as python script.  will only ref a single actor tuple.
+
 from pyspark.sql import SQLContext, Row
 
 conf = {"es.resource" : "movies2/logs", "es.query" : "?q=name:bourne"}
