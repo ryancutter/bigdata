@@ -5,7 +5,7 @@ movies = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
     "org.apache.hadoop.io.NullWritable", "org.elasticsearch.hadoop.mr.LinkedMapWritable", conf=conf)
 
 moviesRows = movies.map(lambda p: Row(id=int(p[1]['id']), name=p[1]['name']))
-schemaMovies = sqlContext.createDataFrame(movieRows)
+schemaMovies = sqlContext.createDataFrame(moviesRows)
 schemaMovies.registerTempTable("movies")
 ids = sqlContext.sql("SELECT id FROM movies")
 ids.collect()
