@@ -7,6 +7,7 @@ from pyspark.sql import SQLContext, Row
 sc = SparkContext("local[*]", "Simple App")
 #sc = SparkContext("spark://url:7077", "Simple App")
 sqlContext = SQLContext(sc)
+sqlContext.setConf("spark.sql.shuffle.partitions", "1")
 
 conf = {"es.resource" : "movies2/logs", "es.query" : "?q=name:bourne"}
 movies = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
@@ -16,6 +17,7 @@ moviesRows = movies.map(lambda p: Row(id=int(p[1]['id']), name=p[1]['name']))
 moviesRowsList = moviesRows.collect()
 schemaMovies = sqlContext.createDataFrame(moviesRowsList)
 schemaMovies.registerTempTable("movies")
+sqlContext.cacheTable("movies")
 
 # get ids in order to form es query
 ids = []
@@ -34,6 +36,7 @@ actedInRows = actedIn.map(lambda p: Row(actor_id=int(p[1]['actor_id']), movie_id
 actedInRowsList = actedInRows.collect()
 schemaActedIn = sqlContext.createDataFrame(actedInRowsList)
 schemaActedIn.registerTempTable("acted_in")
+sqlContext.cacheTable("acted_in")
 
 # get ids in order to form es query
 ids = []
@@ -51,6 +54,8 @@ actors = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
 actorsRows = actors.map(lambda p: Row(id=int(p[1]['id']), name=p[1]['name']))
 schemaActors = sqlContext.createDataFrame(actorsRows)
 schemaActors.registerTempTable("actors")
+sqlContext.cacheTable("actors")
+
 s = "SELECT a.name AS Actors, m.name AS Movie, j.role AS Role FROM actors a LEFT JOIN acted_in j ON a.id = j.actor_id LEFT JOIN movies m ON j.movie_id = m.id"
 results = sqlContext.sql(s)
 for result in results.collect():
