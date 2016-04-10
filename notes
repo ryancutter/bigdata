@@ -1,15 +1,21 @@
 SPARK_CLASSPATH=/path/to/elasticsearch-hadoop-2.2.0/dist/elasticsearch-spark_2.11-2.2.0.jar ./spark-1.6.0-bin-hadoop2.6/bin/spark-submit 2.py
 
-2.py (single actor tuple):
+* 2.py (single actor tuple):
 
 With a running spark master at spark://url:7077 and 1 slave: 9s.  and 2 slaves: 12s.  and 6 slaves: 23s.
 less startup time but more network transmit time.  ie, the final JOIN takes 2.1s vs 1.5s for the 8 thread local solution below.
 
 With a local spark instance and 1 thread: 8s.  and 8 threads: 6s.
-1st 3s is spinning up Spark
+1st 2s is spinning up Spark
 
-3.py (all actor tuples):
+* 3.py (all actor tuples):
 
 With a running spark master at spark://url:7077 and 1 slave: 14s.  and 2 slaves: 19s.  and 6 slaves: 34s.
 
-With a local spark instance and 1 thread: 11s.  and 8 threads: 18s.
+With a local spark instance and 1 thread: 18s.  and 8 threads: 11s.
+
+* vanilla_script (all actor tuples, no Spark SQL):
+
+With a running spark master at spark://url:7077 and 1 slave: 4s.  and 2 slaves: 6s.  and 6 slaves: 12s.
+
+With a local spark instance and 1 thread: 4s.  and 8 threads: 3s.
