@@ -3,6 +3,9 @@
 
 from pyspark import SparkContext
 from pyspark.sql import SQLContext, Row
+from datetime import datetime
+
+start = datetime.now()
 
 sc = SparkContext("local[*]", "Simple App")
 #sc = SparkContext("spark://url:7077", "Simple App")
@@ -60,3 +63,6 @@ s = "SELECT a.name AS Actors, m.name AS Movie, j.role AS Role FROM actors a LEFT
 results = sqlContext.sql(s)
 for result in results.collect():
     print(result)
+stop = datetime.now()
+diff = stop - start
+print "TIME: ", diff.total_seconds() * 1000
