@@ -14,11 +14,13 @@ movies = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
 
 moviesRows = movies.map(lambda p: Row(id=int(p[1]['id']), name=p[1]['name']))
 moviesRowsList = moviesRows.collect()
+schemaMovies = sqlContext.createDataFrame(moviesRowsList)
+schemaMovies.registerTempTable("movies")
+
+# get ids in order to form es query
 ids = []
 for moviesRow in moviesRowsList:
     ids.append(moviesRow['id'])
-schemaMovies = sqlContext.createDataFrame(moviesRowsList)
-schemaMovies.registerTempTable("movies")
 movieIdSnippets = []
 for id in ids:
     movieIdSnippets.append("movie_id:" + str(id))
@@ -29,12 +31,17 @@ actedIn = sc.newAPIHadoopRDD("org.elasticsearch.hadoop.mr.EsInputFormat",\
     "org.apache.hadoop.io.NullWritable", "org.elasticsearch.hadoop.mr.LinkedMapWritable", conf=conf)
 
 actedInRows = actedIn.map(lambda p: Row(actor_id=int(p[1]['actor_id']), movie_id=int(p[1]['movie_id']), role=p[1]['role']))
-schemaActedIn = sqlContext.createDataFrame(actedInRows)
+actedInRowsList = actedInRows.collect()
+schemaActedIn = sqlContext.createDataFrame(actedInRowsList)
 schemaActedIn.registerTempTable("acted_in")
-ids = sqlContext.sql("SELECT actor_id FROM acted_in")
+
+# get ids in order to form es query
+ids = []
+for actedInRow in actedInRowsList:
+    ids.append(actedInRow['actor_id'])
 actorSnippets = []
-for id in ids.collect():
-    actorSnippets.append("id:" + str(id.actor_id))
+for id in ids:
+    actorSnippets.append("id:" + str(id))
 actorQuery = " OR ".join(actorSnippets)
 
 conf = {"es.resource" : "actors2/logs", "es.query" : "?q=" + actorQuery, "es.size" : "10000"}
