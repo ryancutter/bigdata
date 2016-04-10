@@ -14,8 +14,17 @@ With a running spark master at spark://url:7077 and 1 slave: 14s.  and 2 slaves:
 
 With a local spark instance and 1 thread: 18s.  and 8 threads: 11s.
 
+
+
+
 * vanilla_script (all actor tuples, no Spark SQL):
 
 With a running spark master at spark://url:7077 and 1 slave: 4s.  and 2 slaves: 6s.  and 6 slaves: 12s.
 
 With a local spark instance and 1 thread: 4s.  and 8 threads: 3s.
+
+* sql_script.py (all actor tuples):
+
+With a running spark master at spark://url:7077 and 1 slave: 9s.  and 2 slaves: 11s.  and 6 slaves: 21s.
+
+With a local spark instance and 1 thread: 5s.  and 8 threads: 5s.
