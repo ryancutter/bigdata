@@ -43,9 +43,16 @@ M/M (410 - bourne): 1700ms
 M/H (4,686 - picture): 1800ms
 M/G (45,567 - blue): 2300ms
 
-ES-Hadoop:
+ES-Hadoop (Spark SQL):
 
 M/L: (7 - 1MinuteNightmare): 5300ms
 M/M (410 - bourne): 5900ms
 M/H (4,686 - picture): 9400ms
 M/G (45,567 - blue): 34000ms
+
+ES-Hadoop (vanilla):
+
+M/L: (7 - 1MinuteNightmare): 3100ms
+M/M (410 - bourne): 3300ms
+M/H (4,686 - picture): 6600ms
+M/G (45,567 - blue): 29500ms
