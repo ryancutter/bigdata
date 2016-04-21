@@ -34,25 +34,30 @@ With a local spark instance and 1 thread: 5s.  and 8 threads: 5s.
 
 
 Corpus (L/M/H): 1M/15M/150M 
-Result Set (L/M/H/G): 5/500/5,000/50,000
+Result Set (L/M/H): 5/500/5,000
 
 Postgres:
+
+L/L: (2 - frank): 50ms
+L/M: (304 - tv): 55ms
+L/H: (1,174 - blue): 55ms
 
 M/L: (7 - 1MinuteNightmare): 1600ms
 M/M (410 - bourne): 1700ms
 M/H (4,686 - picture): 1800ms
-M/G (45,567 - blue): 2300ms
 
 ES-Hadoop (Spark SQL):
+
+L/L: (2 - frank): 5400ms
+L/M: (304 - tv): 6000ms
+L/H: (1,174 - blue): 7800ms
 
 M/L: (7 - 1MinuteNightmare): 5300ms
 M/M (410 - bourne): 5900ms
 M/H (4,686 - picture): 9400ms
-M/G (45,567 - blue): 34000ms
 
 ES-Hadoop (vanilla):
 
 M/L: (7 - 1MinuteNightmare): 3100ms
 M/M (410 - bourne): 3300ms
 M/H (4,686 - picture): 6600ms
-M/G (45,567 - blue): 29500ms
