@@ -50,6 +50,12 @@ H/L: (7 - carrey): 100ms
 H/M (883 - identity): 670ms
 H/H (5,700 - laugh): 1405ms
 
+(paged)
+H/L: (50 - movie): 1050ms
+H/M (500 - tv): 2900ms
+H/H (5,000 - 1990): 5500ms
+
+
 ES-Hadoop (Spark SQL):
 
 L/L: (2 - frank): 5400ms
