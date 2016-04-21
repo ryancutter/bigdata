@@ -54,7 +54,11 @@ L/H: (1,174 - blue): 7800ms
 
 M/L: (7 - 1MinuteNightmare): 5300ms
 M/M (410 - bourne): 5900ms
-M/H (4,686 - picture): 9400ms
+M/H (4,686 - picture): 9600ms
+
+H/L: (7 - 1MinuteNightmare): 5400ms
+H/M (410 - bourne): 6100ms
+H/H (3,360 - french): 10000ms
 
 ES-Hadoop (vanilla):
 
