@@ -46,6 +46,10 @@ M/L: (7 - 1MinuteNightmare): 1600ms
 M/M (410 - bourne): 1700ms
 M/H (4,686 - picture): 1800ms
 
+H/L: (7 - carrey): 100ms
+H/M (883 - identity): 670ms
+H/H (5,700 - laugh): 1405ms
+
 ES-Hadoop (Spark SQL):
 
 L/L: (2 - frank): 5400ms
