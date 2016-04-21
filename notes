@@ -60,7 +60,7 @@ ES-Hadoop (Spark SQL):
 
 L/L: (2 - frank): 5400ms
 L/M: (304 - tv): 6000ms
-L/H: (1,174 - blue): 7800ms
+L/H: (2,274 - blue): 8800ms
 
 M/L: (7 - 1MinuteNightmare): 5300ms
 M/M (410 - bourne): 5900ms
