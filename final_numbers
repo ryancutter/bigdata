@@ -1,0 +1,42 @@
+Corpus (L/M/H): 1M/15M/150M 
+Result Set (L/M/H): 5/500/5,000
+
+Postgres:
+
+L/L: (2 - frank): 50ms
+L/M: (304 - tv): 55ms
+L/H: (1,174 - blue): 55ms
+
+M/L: (7 - 1MinuteNightmare): 1600ms
+M/M (410 - bourne): 1700ms
+M/H (4,686 - picture): 1800ms
+
+H/L: (7 - carrey): 100ms
+H/M (883 - identity): 670ms
+H/H (5,700 - laugh): 1405ms
+
+(paged)
+H/L: (50 - movie): 1450ms
+H/M (500 - tv): 2900ms
+H/H (5,000 - 1990): 5500ms
+
+
+ES-Hadoop (Spark SQL):
+
+L/L: (2 - frank): 5400ms
+L/M: (304 - tv): 6000ms
+L/H: (2,274 - blue): 8800ms
+
+M/L: (7 - 1MinuteNightmare): 5300ms
+M/M (410 - bourne): 5900ms
+M/H (4,686 - picture): 9600ms
+
+H/L: (7 - 1MinuteNightmare): 5400ms
+H/M (410 - bourne): 6100ms
+H/H (3,360 - french): 10000ms
+
+ES-Hadoop (vanilla):
+
+M/L: (7 - 1MinuteNightmare): 3100ms
+M/M (410 - bourne): 3300ms
+M/H (4,686 - picture): 6600ms
